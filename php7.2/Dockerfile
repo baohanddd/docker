@@ -22,7 +22,7 @@ RUN echo "extension=mongodb.so" > /etc/php/7.2/mods-available/mongodb.ini
 RUN cd /etc/php/7.2/fpm/conf.d && ln -s /etc/php/7.2/mods-available/mongodb.ini 20-mongodb.ini
 RUN cd /etc/php/7.2/cli/conf.d && ln -s /etc/php/7.2/mods-available/mongodb.ini 20-mongodb.ini
 
-RUN cd curl -sS https://getcomposer.org/installer -o composer-setup.php
+RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
 RUN sed -i "s/;daemonize = yes/daemonize = no/g" /etc/php/7.2/fpm/php-fpm.conf 
