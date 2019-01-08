@@ -10,7 +10,7 @@ RUN LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y
 RUN curl -s "https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh" | bash
 RUN apt-get update
 
-RUN apt-get install php7.2-fpm php7.2-cli php7.2-common php7.2-dev php7.2-json php7.2-opcache php7.2-mbstring php7.2-curl php7.2-phalcon php-redis php-msgpack php-yac php-ds php-pear -y
+RUN apt-get install php7.2-fpm php7.2-cli php7.2-common php7.2-dev php7.2-json php7.2-opcache php7.2-mbstring php7.2-curl php7.2-phalcon php-redis php-msgpack php-yac php-ds php-pear php-xdebug -y
 
 RUN pecl install swoole
 RUN echo "extension=swoole.so" > /etc/php/7.2/mods-available/swoole.ini
