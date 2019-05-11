@@ -30,13 +30,14 @@ RUN sed -i "s/listen = \/run\/php\/php7.2-fpm.sock/listen = 9000/g" /etc/php/7.2
 
 RUN mkdir -p /run/php && chown -R www-data:www-data /run/php
 
-RUN apt-get install php-xdebug
+# install gearman extension
 RUN LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/pkg-gearman -y
 RUN apt-get update
 RUN apt-get install php-gearman -y
+
+# RUN apt-get install php-xdebug
+
 RUN composer config -g repo.packagist composer https://packagist.laravel-china.org
 
 EXPOSE 9000
-
-WORKDIR /var/www/html
 CMD /usr/sbin/php-fpm7.2
