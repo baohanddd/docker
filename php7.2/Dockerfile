@@ -37,7 +37,10 @@ RUN apt-get install php-gearman -y
 
 # RUN apt-get install php-xdebug
 
-RUN composer config -g repo.packagist composer https://packagist.laravel-china.org
+RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+RUN add-apt-repository ppa:webupd8team/java
+RUN apt-get update
+RUN apt-get install oracle-java9-installer
 
 EXPOSE 9000
 CMD /usr/sbin/php-fpm7.2
