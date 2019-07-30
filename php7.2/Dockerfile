@@ -30,7 +30,7 @@ RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/compos
 RUN sed -i "s/;daemonize = yes/daemonize = no/g" /etc/php/7.3/fpm/php-fpm.conf 
 RUN sed -i "s/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/g" /etc/php/7.3/fpm/pool.d/www.conf 
 
-# RUN mkdir -p /run/php && chown -R www-data:www-data /run/php
+RUN mkdir -p /run/php && chown -R www-data:www-data /run/php
 
 # install gearman extension
 # RUN LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/pkg-gearman -y
