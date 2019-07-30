@@ -33,9 +33,9 @@ RUN sed -i "s/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/g" /etc/php/7.3
 RUN mkdir -p /run/php && chown -R www-data:www-data /run/php
 
 # install gearman extension
-# RUN LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/pkg-gearman -y
-# RUN apt-get update
-# RUN apt-get install php-gearman -y
+RUN LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/pkg-gearman -y
+RUN apt-get update
+RUN apt-get install php-gearman -y
 
 # EXPOSE 9000
 # CMD /usr/sbin/php-fpm7.3
