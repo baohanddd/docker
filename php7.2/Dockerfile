@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-RUN export DEBIAN_FRONTEND=noninteractive
+RUN echo "deb-src http://archive.ubuntu.com/ubuntu xenial main restricted #Added by software-properties \ndeb http://mirrors.aliyun.com/ubuntu/ xenial main restricted \ndeb-src http://mirrors.aliyun.com/ubuntu/ xenial main restricted multiverse universe #Added by software-properties \ndeb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted \ndeb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted multiverse universe #Added by software-properties \ndeb http://mirrors.aliyun.com/ubuntu/ xenial universe \ndeb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe \ndeb http://mirrors.aliyun.com/ubuntu/ xenial multiverse \ndeb http://mirrors.aliyun.com/ubuntu/ xenial-updates multiverse \ndeb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse \ndeb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse #Added by software-properties \ndeb http://archive.canonical.com/ubuntu xenial partner \ndeb-src http://archive.canonical.com/ubuntu xenial partner \ndeb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted \ndeb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted multiverse universe #Added by software-properties \ndeb http://mirrors.aliyun.com/ubuntu/ xenial-security universe \ndeb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse" > /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get install software-properties-common -y
 RUN apt-get install curl vim unzip -y
@@ -11,7 +11,7 @@ RUN LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y
 RUN curl -s "https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh" | bash
 RUN apt-get update
 
-RUN apt-get install php7.2-fpm php7.2-cli php7.2-common php7.2-dev php7.2-json php7.2-opcache php7.2-mbstring php7.2-curl php7.2-phalcon php-redis php-msgpack php-yac php-ds php-pear -y
+RUN apt-get install php-fpm php-cli php-common php-dev php-json php7.3-opcache php-mbstring php-curl php-phalcon php-redis php-msgpack php-yac php-ds php-pear -y
 
 RUN pecl install swoole
 RUN echo "extension=swoole.so" > /etc/php/7.2/mods-available/swoole.ini
