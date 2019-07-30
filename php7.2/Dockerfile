@@ -37,5 +37,5 @@ RUN LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/pkg-gearman -y
 RUN apt-get update
 RUN apt-get install php-gearman -y
 
-# EXPOSE 9000
-# CMD /usr/sbin/php-fpm7.3
+EXPOSE 9000
+CMD /usr/sbin/php-fpm7.3
