@@ -14,21 +14,21 @@ RUN apt-get update
 RUN apt-get install php-fpm php-cli php-common php-dev php-json php7.3-opcache php-mbstring php-curl php-phalcon php-redis php-msgpack php-yac php-ds php-pear -y
 
 RUN pecl install swoole
-RUN echo "extension=swoole.so" > /etc/php/7.2/mods-available/swoole.ini
-RUN cd /etc/php/7.2/fpm/conf.d && ln -s /etc/php/7.2/mods-available/swoole.ini 20-swoole.ini
-RUN cd /etc/php/7.2/cli/conf.d && ln -s /etc/php/7.2/mods-available/swoole.ini 20-swoole.ini
+RUN echo "extension=swoole.so" > /etc/php/7.3/mods-available/swoole.ini
+RUN cd /etc/php/7.3/fpm/conf.d && ln -s /etc/php/7.3/mods-available/swoole.ini 20-swoole.ini
+RUN cd /etc/php/7.3/cli/conf.d && ln -s /etc/php/7.3/mods-available/swoole.ini 20-swoole.ini
 
 RUN pecl install mongodb
-RUN echo "extension=mongodb.so" > /etc/php/7.2/mods-available/mongodb.ini
-RUN cd /etc/php/7.2/fpm/conf.d && ln -s /etc/php/7.2/mods-available/mongodb.ini 20-mongodb.ini
-RUN cd /etc/php/7.2/cli/conf.d && ln -s /etc/php/7.2/mods-available/mongodb.ini 20-mongodb.ini
+RUN echo "extension=mongodb.so" > /etc/php/7.3/mods-available/mongodb.ini
+RUN cd /etc/php/7.3/fpm/conf.d && ln -s /etc/php/7.3/mods-available/mongodb.ini 20-mongodb.ini
+RUN cd /etc/php/7.3/cli/conf.d && ln -s /etc/php/7.3/mods-available/mongodb.ini 20-mongodb.ini
 
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 
-RUN sed -i "s/;daemonize = yes/daemonize = no/g" /etc/php/7.2/fpm/php-fpm.conf 
-RUN sed -i "s/listen = \/run\/php\/php7.2-fpm.sock/listen = 9000/g" /etc/php/7.2/fpm/pool.d/www.conf 
+RUN sed -i "s/;daemonize = yes/daemonize = no/g" /etc/php/7.3/fpm/php-fpm.conf 
+RUN sed -i "s/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/g" /etc/php/7.3/fpm/pool.d/www.conf 
 
 RUN mkdir -p /run/php && chown -R www-data:www-data /run/php
 
@@ -40,4 +40,4 @@ RUN apt-get install php-gearman -y
 # RUN apt-get install php-xdebug
 
 EXPOSE 9000
-CMD /usr/sbin/php-fpm7.2
+CMD /usr/sbin/php-fpm7.3
