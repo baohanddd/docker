@@ -18,10 +18,10 @@ RUN echo "extension=swoole.so" > /etc/php/7.3/mods-available/swoole.ini
 RUN cd /etc/php/7.3/fpm/conf.d && ln -s /etc/php/7.3/mods-available/swoole.ini 20-swoole.ini
 RUN cd /etc/php/7.3/cli/conf.d && ln -s /etc/php/7.3/mods-available/swoole.ini 20-swoole.ini
 
-# RUN pecl install mongodb
-# RUN echo "extension=mongodb.so" > /etc/php/7.3/mods-available/mongodb.ini
-# RUN cd /etc/php/7.3/fpm/conf.d && ln -s /etc/php/7.3/mods-available/mongodb.ini 20-mongodb.ini
-# RUN cd /etc/php/7.3/cli/conf.d && ln -s /etc/php/7.3/mods-available/mongodb.ini 20-mongodb.ini
+RUN pecl install mongodb
+RUN echo "extension=mongodb.so" > /etc/php/7.3/mods-available/mongodb.ini
+RUN cd /etc/php/7.3/fpm/conf.d && ln -s /etc/php/7.3/mods-available/mongodb.ini 20-mongodb.ini
+RUN cd /etc/php/7.3/cli/conf.d && ln -s /etc/php/7.3/mods-available/mongodb.ini 20-mongodb.ini
 
 # RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
 # RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
