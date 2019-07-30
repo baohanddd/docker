@@ -3,6 +3,7 @@ FROM ubuntu:18.04
 RUN apt-get update
 RUN apt-get install software-properties-common -y
 RUN apt-get install curl vim unzip -y
+RUN ENV DEBIAN_FRONTEND=noninteractive
 
 RUN echo "50.97.198.58  packagecloud.io" >> /etc/hosts
 
