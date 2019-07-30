@@ -1,4 +1,4 @@
-FROM daocloud.io/library/ubuntu:xenial-20180808
+FROM ubuntu:18.04
 
 RUN apt-get update
 RUN apt-get install software-properties-common -y
@@ -36,11 +36,6 @@ RUN apt-get update
 RUN apt-get install php-gearman -y
 
 # RUN apt-get install php-xdebug
-
-RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
-RUN add-apt-repository ppa:webupd8team/java
-RUN apt-get update
-RUN apt-get install oracle-java9-installer
 
 EXPOSE 9000
 CMD /usr/sbin/php-fpm7.2
