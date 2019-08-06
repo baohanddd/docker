@@ -36,6 +36,7 @@ RUN mkdir -p /run/php && chown -R www-data:www-data /run/php
 RUN LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/pkg-gearman -y
 RUN apt-get update
 RUN apt-get install php-gearman -y
+RUN apt-get install php-bcmath -y
 
 EXPOSE 9000
 CMD /usr/sbin/php-fpm7.3
