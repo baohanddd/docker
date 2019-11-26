@@ -41,6 +41,8 @@ RUN apt-get install php-gearman -y
 RUN apt-get install php-bcmath -y
 
 RUN composer global require 'squizlabs/php_codesniffer=*'
+RUN ln -s /root/.composer/vendor/bin/phpcs /usr/local/bin/phpcs
+RUN composer global require friendsofphp/php-cs-fixer
 RUN ln -s /root/.composer/vendor/bin/php-cs-fixer /usr/local/bin/php-cs-fixer
 
 RUN apt-get install -y locales
