@@ -48,6 +48,7 @@ RUN ln -s /root/.composer/vendor/bin/php-cs-fixer /usr/local/bin/php-cs-fixer
 RUN apt-get install -y locales
 RUN apt-get install -y git
 RUN locale-gen en_US.UTF-8
+RUN apt-get install -y php7.3-zip
 
 EXPOSE 9000
 CMD /usr/sbin/php-fpm7.3
