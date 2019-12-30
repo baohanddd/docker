@@ -46,9 +46,14 @@ RUN composer global require friendsofphp/php-cs-fixer
 RUN ln -s /root/.composer/vendor/bin/php-cs-fixer /usr/local/bin/php-cs-fixer
 
 RUN apt-get install -y locales
-RUN apt-get install -y git
+RUN apt-get install -y git wget
 RUN locale-gen en_US.UTF-8
 RUN apt-get install -y php7.3-zip
+
+RUN wget -qO - https://www.mongodb.org/static/pgp/server-3.6.asc | apt-key add -
+RUN echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.6.list
+RUN apt-get update
+RUN apt-get install -y mongodb-org-tools=3.6.16
 
 EXPOSE 9000
 CMD /usr/sbin/php-fpm7.3
