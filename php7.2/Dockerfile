@@ -32,9 +32,9 @@ RUN echo "extension=mongodb.so" > /etc/php/7.4/mods-available/mongodb.ini
 RUN cd /etc/php/7.4/fpm/conf.d && ln -s /etc/php/7.4/mods-available/mongodb.ini 20-mongodb.ini
 RUN cd /etc/php/7.4/cli/conf.d && ln -s /etc/php/7.4/mods-available/mongodb.ini 20-mongodb.ini
 
-#RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
-#RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-COPY composer /usr/local/bin/composer
+RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
+RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+#COPY composer /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/composer
 RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 
