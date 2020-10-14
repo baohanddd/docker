@@ -32,15 +32,17 @@ RUN echo "extension=mongodb.so" > /etc/php/7.4/mods-available/mongodb.ini
 RUN cd /etc/php/7.4/fpm/conf.d && ln -s /etc/php/7.4/mods-available/mongodb.ini 20-mongodb.ini
 RUN cd /etc/php/7.4/cli/conf.d && ln -s /etc/php/7.4/mods-available/mongodb.ini 20-mongodb.ini
 
-RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
-RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-#COPY composer /usr/local/bin/composer
+#RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
+#RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+COPY composer /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/composer
 RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+RUN composer self-update
 
 RUN sed -i "s/;daemonize = yes/daemonize = no/g" /etc/php/7.4/fpm/php-fpm.conf
 RUN sed -i "s/listen = \/run\/php\/php7.4-fpm.sock/listen = 9000/g" /etc/php/7.4/fpm/pool.d/www.conf
 RUN sed -i "s/; max_input_vars = 1000/max_input_vars = 10000/g" /etc/php/7.4/fpm/php.ini
+RUN sed -i "s/display_errors = Off/display_errors = On/g" /etc/php/7.4/fpm/php.ini
 
 RUN mkdir -p /run/php && chown -R www-data:www-data /run/php
 
