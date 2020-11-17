@@ -11,7 +11,7 @@ RUN apt-get install php7.4-fpm php7.4-cli php7.4-common php7.4-dev php7.4-json p
 
 #RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
 #RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-COPY php7.2/composer /usr/local/bin/composer
+COPY php7x/composer /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/composer
 RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 RUN composer self-update
