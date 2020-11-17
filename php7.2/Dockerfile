@@ -63,9 +63,9 @@ RUN apt-get install -y locales
 RUN locale-gen en_US.UTF-8
 
 # for cleaning...
-RUN apt-get clean autoclean \
-        apt-get autoremove -y \
-        rm -rf /var/lib/{apt,dpkg,cache,log}/
+RUN apt-get clean autoclean 
+RUN apt-get autoremove -y 
+RUN rm -rf /var/lib/{apt,dpkg,cache,log}
 
 EXPOSE 9000
 CMD /usr/sbin/php-fpm7.4
