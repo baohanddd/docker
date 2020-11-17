@@ -7,7 +7,7 @@ RUN apt-get update
 RUN apt-get install software-properties-common -y
 RUN apt-get install curl vim unzip git wget -y
 
-RUN apt-get install php7.4-fpm php7.4-cli php7.4-common php7.4-dev php7.4-xdebug php7.4-json php7.4-opcache php7.4-mbstring php7.4-curl php-redis php-msgpack php-yac php-ds php-pear php7.4-zip php7.4-gd php7.4-xml php7.4-bcmath -y
+RUN apt-get install php7.4-fpm php7.4-cli php7.4-common php7.4-dev php7.4-json php7.4-opcache php7.4-mbstring php7.4-curl php-redis php-msgpack php-yac php-ds php-pear php7.4-zip php7.4-gd php7.4-xml php7.4-bcmath -y
 
 RUN pecl channel-update pecl.php.net
 RUN mkdir -p /tmp/pear/cache
@@ -63,7 +63,9 @@ RUN apt-get install -y locales
 RUN locale-gen en_US.UTF-8
 
 # for cleaning...
-RUN apt-get clean
+RUN apt-get clean autoclean \
+        apt-get autoremove -y \
+        rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 EXPOSE 9000
 CMD /usr/sbin/php-fpm7.4
