@@ -9,6 +9,13 @@ RUN apt-get install curl vim unzip git wget -y
 
 RUN apt-get install php7.4-fpm php7.4-cli php7.4-common php7.4-dev php7.4-json php7.4-opcache php7.4-mbstring php7.4-curl php-redis php-msgpack php-yac php-ds php-pear php7.4-zip php7.4-gd php7.4-xml php7.4-bcmath -y
 
+#RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
+#RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+COPY php7.2/composer /usr/local/bin/composer
+RUN chmod +x /usr/local/bin/composer
+RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+RUN composer self-update
+
 RUN pecl channel-update pecl.php.net
 RUN mkdir -p /tmp/pear/cache
 
@@ -31,13 +38,6 @@ RUN pecl install mongodb
 RUN echo "extension=mongodb.so" > /etc/php/7.4/mods-available/mongodb.ini
 RUN cd /etc/php/7.4/fpm/conf.d && ln -s /etc/php/7.4/mods-available/mongodb.ini 20-mongodb.ini
 RUN cd /etc/php/7.4/cli/conf.d && ln -s /etc/php/7.4/mods-available/mongodb.ini 20-mongodb.ini
-
-RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
-RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-#COPY composer /usr/local/bin/composer
-RUN chmod +x /usr/local/bin/composer
-RUN composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
-RUN composer self-update
 
 RUN sed -i "s/;daemonize = yes/daemonize = no/g" /etc/php/7.4/fpm/php-fpm.conf
 RUN sed -i "s/listen = \/run\/php\/php7.4-fpm.sock/listen = 9000/g" /etc/php/7.4/fpm/pool.d/www.conf
